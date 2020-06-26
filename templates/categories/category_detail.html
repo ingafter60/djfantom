@@ -34,7 +34,7 @@
                            <div class="blog_text">
                               <div class="blog_text_inner">
                                  <a class="cat" href="#">Gadgets 1</a>
-                                 <a href="#">
+                                 <a href="{% url 'detail' pk=post.id slug=post.slug %}">
                                     <h4>{{ post.title }}</h4>
                                  </a>
                                  <p>{{ post.content |truncatechars:150 }}</p>
