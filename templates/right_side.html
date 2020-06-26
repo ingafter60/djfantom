@@ -94,7 +94,7 @@
             {% tags as lebels %}
             {% for label in lebels %}
                <li>
-                  <a href="{% url 'category_detail' pk=label.id slug=label.slug %}">
+                  <a href="{% url 'tag_detail' label.slug %}">
                      {{ label.title }}
                   </a>
                </li>

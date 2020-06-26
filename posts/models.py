@@ -37,7 +37,10 @@ class Tag(models.Model):
 		self.slug = slugify(self.title)
 		super(Tag, self).save(*args, **kwargs)	
 
-
+	# Define method to counting number of posts in each tag
+	def post_count(self):
+		return self.posts.all().count() 
+		
 
 # POST MODELS/TABLE
 class Post(models.Model):
