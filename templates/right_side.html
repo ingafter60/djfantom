@@ -77,7 +77,8 @@
             {% categories as category %}
             {% for cat in category %}
             <li>
-               <a href="#" class="d-flex justify-content-between">
+            <!-- http://127.0.0.1:8000/category/  1/        technology -->
+               <a href="{% url 'category_detail'  pk=cat.id slug=cat.slug %}" class="d-flex justify-content-between">
                   <p>{{ cat.title }}</p>
                   <p>{{ cat.post_count }}</p>
                </a>
