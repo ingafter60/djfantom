@@ -19,6 +19,10 @@ class Category(models.Model):
 	def __str__(self):
 		return self.title
 
+	# Define method to counting number of posts in each category
+	def post_count(self):
+		return self.posts.all().count() 
+
 
 # POST MODELS/TABLE
 class Post(models.Model):
@@ -29,7 +33,11 @@ class Post(models.Model):
 	image 	= models.ImageField(blank=True, null=True, upload_to="uploads/")
 	user 		= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	slug 		= models.SlugField(default='slug', editable=False)
-	category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+	category = models.ForeignKey(
+					Category, 
+					on_delete=models.CASCADE, 
+					default=1,
+					related_name="posts")
 	
 	# Define method to automatically save title as slug
 	def save(self, *args, **kwargs):
