@@ -1,5 +1,5 @@
 # posts/views.py
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Post 
 
@@ -25,4 +25,22 @@ class PostDetail(DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(PostDetail, self).get_context_data(**kwargs)
+		return context
+
+# CATEGORYDETAIL MODELS/TABLE
+class CategoryDetail(DetailView):
+
+	# Get all posts
+	model = Post 
+	template_name 	= "categories/category_detail.html"
+	context_object_name = 'posts'
+
+	# Define method to get Category with its specific credential (pk)
+	def get_query_set(self):
+		self.cattegory = get_object_or_404(Category, pk=self.kwargs['pk'])
+		# Get all posts based on their category
+		return Post.objects.filter(category=self.category).oder_by('-id')
+
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super(CategoryDetail, self).get_context_data(**kwargs)
 		return context
