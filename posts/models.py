@@ -57,6 +57,7 @@ class Post(models.Model):
 					default=1,
 					related_name="posts")
 	tag 		= models.ManyToManyField(Tag, related_name="posts", blank=True)
+	slider_post = models.BooleanField(default=False)
 	
 	# Define method to automatically save title as slug
 	def save(self, *args, **kwargs):
